@@ -4,6 +4,7 @@ import be.vdab.restservice.domain.Filiaal;
 import be.vdab.restservice.exceptions.FiliaalNietGevondenException;
 import be.vdab.restservice.services.FiliaalService;
 import com.sun.jdi.Method;
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.server.EntityLinks;
@@ -28,6 +29,7 @@ class FiliaalController {
     private final FiliaalService filiaalService;
     private final EntityLinks entityLinks;
 
+    // Intellij error message for entityLinks parameter may be ignored
     public FiliaalController(FiliaalService filiaalService, EntityLinks entityLinks) {
         this.filiaalService = filiaalService;
         this.entityLinks = entityLinks;
@@ -40,6 +42,7 @@ class FiliaalController {
      * @return Filiaal with id or Filiaal Niet Gevonden Exception
      */
     @GetMapping("{id}")
+    @Operation(summary = "Een filiaal zoeken op id") // for openapi-ui
 //    public Filiaal get(
     // when there must be links included in json data, use EntityModel
     EntityModel<Filiaal> get(@PathVariable long id) {
@@ -63,6 +66,7 @@ class FiliaalController {
 
 
     @GetMapping
+    @Operation(summary = "Alle filialen zoeken")
     // CollectionModel creates a response holding a collection of all
         // 'FiliaalIdNaam'-EntityModel objects          (basic info / performant )
         // and hyperlink(s) to related Filiaal objects  (full info)
@@ -89,6 +93,7 @@ class FiliaalController {
      * @param id primary key in failialen table
      */
     @DeleteMapping("{id}")
+    @Operation( summary = "Een filiaal verwijderen")
     public void delete(@PathVariable long id) {
         filiaalService.delete(id);
     }
@@ -100,9 +105,9 @@ class FiliaalController {
      * @Valid checks validity of a new Filiaal before saving it to databse
      */
     @PostMapping
+    @Operation( summary = "Een filiaal creëren")
     @ResponseStatus(HttpStatus.CREATED)
     // spring generates response status code 201
-
     // for EntitiyLinks Objects
     // HttpHeaders builts response headers
     HttpHeaders create(@RequestBody @Valid Filiaal filiaal) {
@@ -144,6 +149,7 @@ class FiliaalController {
      * @Valid checks validity of an updated Filiaal before saving it to database
      */
     @PutMapping("{id}")
+    @Operation( summary = "Een filiaal wijzigen")
     void put(@RequestBody @Valid Filiaal filiaal) {
         filiaalService.update(filiaal);
     }
