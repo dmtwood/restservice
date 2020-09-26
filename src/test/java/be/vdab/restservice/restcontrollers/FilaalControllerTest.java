@@ -1,10 +1,14 @@
-package be.vdab.restcontrollers;
+package be.vdab.restservice.restcontrollers;
 
 import org.junit.jupiter.api.Test;
+import org.junit.runner.RunWith;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.AbstractTransactionalJUnit4SpringContextTests;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
 // !!
@@ -21,7 +25,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest         // auto creation of all beans (controllers, services, repos,...)
 @AutoConfigureMockMvc   // sends http requests from within the test
 @Sql("/insertFiliaal.sql")
-public class FilaalControllerTest extends AbstractTransactionalJUnit4SpringContextTests {
+class FilaalControllerTest extends AbstractTransactionalJUnit4SpringContextTests {
 
     private final MockMvc mockMvc;
 
