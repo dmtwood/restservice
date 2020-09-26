@@ -17,7 +17,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 
-// INTEGRATION TEST >>                                               << ( NO UNIT TEST )
+// INTEGRATION REST SERVICE TEST >>                                     << ( NO UNIT TEST )
 // inject MOCKMVC OBJECT                                                ( NO domain objects needed )
 // && use  perform( GET...)   .andExpect( status() | jsonPath()  )      ( NO assertThat( obj.meth() ).is...(testObj) )
 
